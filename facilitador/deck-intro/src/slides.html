@@ -1,0 +1,465 @@
+<section class="slide p-cover" data-pattern="cover-editorial" data-label="01 Portada">
+  <div class="body">
+    <div class="cv-rail">
+      <div class="vt">Taller práctico · LAFISE · 2026</div>
+      <div class="cv-issue">Sesión en vivo</div>
+    </div>
+
+    <div class="cv-top">
+      <div class="lockup"><img src="assets/lockup-primary-navy.svg" alt="Databricks"></div>
+      <div class="cv-stamp"><b>Databricks</b>Structured Streaming</div>
+    </div>
+
+    <div class="cv-mark" aria-hidden="true">
+      <img src="assets/databricks-symbol-color.svg" alt="">
+    </div>
+
+    <div class="cv-headline">
+      <div class="kicker">Procesamiento de eventos en tiempo real</div>
+      <h1>Procesa cada<br>evento mientras<br><span class="e">ocurre.</span></h1>
+    </div>
+
+    <div class="cv-subhead">
+      <div class="deck">Un taller práctico para ingerir eventos que llegan cada segundo, transformarlos, agregarlos por ventanas de tiempo, manejar los que llegan tarde, enriquecerlos y generar alertas.</div>
+      <dl class="meta">
+        <div><dt>Cliente</dt><dd>LAFISE</dd></div>
+        <div><dt>Duración</dt><dd>~2 horas</dd></div>
+        <div><dt>Ejercicios</dt><dd>5 + reto</dd></div>
+        <div><dt>Cómputo</dt><dd>Clúster clásico</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>LAFISE</b>Eventos en tiempo real</div>
+    <div class="c">Datos sintéticos · transacciones con tarjeta</div>
+    <div class="r"><span class="num">01</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide dark p-manifesto" data-pattern="manifesto-darkroom" data-label="02 Manifiesto">
+  <div class="body">
+    <div class="mn-top">
+      <div class="mn-eyebrow">La idea del taller · 02</div>
+      <div class="mn-tag">Tiempo real</div>
+    </div>
+
+    <div class="mn-statement">
+      <p>Una alerta de fraude vale lo que vale <em>el momento en que llega</em> a quien la tiene que atender.</p>
+    </div>
+
+    <div class="mn-attrib">
+      <div class="who">Taller LAFISE<span class="role">Structured Streaming</span></div>
+      <div class="src">Introducción</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Introducción</b>Manifiesto</div>
+    <div class="c">¿Cuándo ocurrió? · ¿Cuándo llegó? · ¿Ya podemos cerrar el minuto?</div>
+    <div class="r"><span class="num">02</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide p-hero-metric" data-pattern="hero-metric" data-label="03 Escenario">
+  <div class="body">
+    <div class="hm-top">
+      <div class="eyebrow" style="margin-bottom:0">El escenario del laboratorio</div>
+      <div class="tag">Datos sintéticos · ~20 transacciones por segundo</div>
+    </div>
+
+    <div class="hm-main">
+      <div class="hm-num">
+        10<span class="unit">%</span>
+        <span class="sub">de las transacciones llega<br>minutos después de ocurrir</span>
+      </div>
+
+      <div class="hm-narrative">
+        <h2>Las transacciones llegan todo el día, y no siempre <em>en orden.</em></h2>
+        <p>Un POS sin conexión, un reintento o una cola atrasada hacen que una compra de las 10:00 llegue a las 10:04. Además llegan duplicados y registros inválidos. El flujo tiene que dar resultados correctos sin esperar para siempre.</p>
+
+        <div class="hm-spark">
+          <svg width="320" height="64" viewBox="0 0 320 64" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="sp1" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#FF3621" stop-opacity="0.32"/>
+                <stop offset="1" stop-color="#FF3621" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 8 L30 10 L60 14 L90 22 L120 32 L150 40 L180 46 L210 50 L240 53 L270 55 L300 56 L320 57 L320 64 L0 64 Z" fill="url(#sp1)"/>
+            <path d="M0 8 L30 10 L60 14 L90 22 L120 32 L150 40 L180 46 L210 50 L240 53 L270 55 L300 56 L320 57" stroke="#FF3621" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="240" cy="53" r="4" fill="#FF3621"/>
+          </svg>
+          <div class="meta"><b>Cola de retrasos</b>De segundos a 8 minutos</div>
+        </div>
+
+        <dl class="hm-baseline">
+          <div class="row"><dt>Países</dt><dd>NI · CR · HN · PA · DO</dd></div>
+          <div class="row"><dt>Canales</dt><dd>POS · e-commerce · cajero · app</dd></div>
+          <div class="row"><dt>Monedas</dt><dd>NIO · CRC · HNL · USD · DOP</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Introducción</b>Escenario</div>
+    <div class="c">Un generador escribe transacciones nuevas cada 2 segundos durante toda la sesión</div>
+    <div class="r"><span class="num">03</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide oat-deep p-marginalia" data-pattern="marginalia-essay" data-label="04 Concepto">
+  <div class="body">
+    <div class="mg-top">
+      <h2>Tiempo de evento, ventanas y <em>watermark.</em></h2>
+      <div class="meta">El concepto central<br>Notebook 03</div>
+    </div>
+
+    <div class="mg-cols">
+      <div class="mg-body">
+        <p class="lede">Agrupamos cada compra en el minuto en que <em>ocurrió,</em> no en el minuto en que llegó a nuestro sistema.</p>
+        <p><span class="drop">E</span>l problema es saber cuándo dar por terminado un minuto si todavía puede llegar una compra de ese minuto. El watermark lo decide: es el evento más reciente que hemos visto menos el retraso que toleramos. Cuando el watermark pasa el final de una ventana, la ventana se cierra, se emite su resultado y se libera su memoria.</p>
+        <p>Un watermark corto da resultados rápidos y pierde más tardíos. Uno largo es más completo, pero espera más y guarda más estado. Elegirlo es una <b>decisión de negocio</b>: un tablero operativo tolera un 2% de diferencia, una conciliación no.</p>
+      </div>
+
+      <aside class="mg-rail">
+        <div class="item">
+          <div class="n">01</div>
+          <div>
+            <div class="lbl">Ventana fija</div>
+            <div class="v">1 min</div>
+            <div class="note">10:00 a 10:01, 10:01 a 10:02. Cada evento cae en una sola.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="n">02</div>
+          <div>
+            <div class="lbl">Ventana deslizante</div>
+            <div class="v">5 min <span class="lv">cada</span> 1</div>
+            <div class="note">"Los últimos 5 minutos", recalculado cada minuto.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="n">03</div>
+          <div>
+            <div class="lbl">Watermark</div>
+            <div class="v">máx(t) − 1 min</div>
+            <div class="note">Cierra las ventanas y limita el estado que se guarda.</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="n">04</div>
+          <div>
+            <div class="lbl">Lo que llega después</div>
+            <div class="v">Se descarta</div>
+            <div class="note">Y se puede medir: lo haremos comparando contra Silver.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Concepto</b>Tiempo de evento</div>
+    <div class="c">Append = resultado final una vez · Update + MERGE = resultado en vivo que se corrige</div>
+    <div class="r"><span class="num">04</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide p-metric-grid" data-pattern="metric-grid" data-label="05 Datos imperfectos">
+  <div class="body">
+    <div class="mg-head">
+      <h2>Lo que trae el generador, <em>a propósito.</em></h2>
+      <div class="as-of">Datos sintéticos<br>Los mismos problemas que los datos reales</div>
+    </div>
+
+    <div class="mg-grid">
+      <div class="kpi">
+        <div class="lbl">Eventos tardíos</div>
+        <div class="val">8<span class="unit">%</span></div>
+        <div class="delta">30 s a 3 min<span class="vs">notebook 03</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 30 L40 29 L80 26 L120 18 L160 10 L200 6" stroke="#FF3621" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>Watermark</b>los ordena</div>
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="lbl">Muy tardíos</div>
+        <div class="val">2<span class="unit">%</span></div>
+        <div class="delta dn">4 a 8 min<span class="vs">se descartan</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 6 L40 8 L80 12 L120 20 L160 28 L200 31" stroke="#97A3A6" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>Medibles</b>vs. Silver</div>
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="lbl">Duplicados</div>
+        <div class="val">3<span class="unit">%</span></div>
+        <div class="delta">mismo event_id<span class="vs">notebook 02</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 20 L50 20 L100 20 L150 20 L200 20" stroke="#FF3621" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>0</b>en Silver</div>
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="lbl">Registros inválidos</div>
+        <div class="val">3<span class="unit">%</span></div>
+        <div class="delta dn">N/A · negativo · XXX<span class="vs">notebook 02</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 26 L50 24 L100 25 L150 23 L200 24" stroke="#97A3A6" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>Cuarentena</b>con motivo</div>
+        </div>
+      </div>
+
+      <div class="kpi accent">
+        <div class="lbl">Tarjetas en ráfaga</div>
+        <div class="val">5</div>
+        <div class="delta">10+ compras en 2 min<span class="vs">notebook 04</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 30 L40 30 L60 8 L80 30 L120 30 L140 6 L160 30 L200 30" stroke="#FFFFFF" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>Alerta</b>de velocidad</div>
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="lbl">Tarjetas viajeras</div>
+        <div class="val">5</div>
+        <div class="delta">2+ países en 5 min<span class="vs">reto 06</span></div>
+        <div class="spark">
+          <svg viewBox="0 0 200 36" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M0 28 L40 10 L80 26 L120 8 L160 24 L200 12" stroke="#FF3621" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+          <div class="bench"><b>Viaje</b>imposible</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Laboratorio</b>Datos imperfectos</div>
+    <div class="c">Cada problema se resuelve en un notebook distinto</div>
+    <div class="r"><span class="num">05</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide oat-deep p-matrix" data-pattern="comparison-matrix" data-label="06 Cuánto tiempo real">
+  <div class="body">
+    <div class="mx-head">
+      <h2>¿Cuánto <em>tiempo real</em> necesita cada caso?</h2>
+      <div class="meta">El mismo código, distinto trigger<br>Notebook 05</div>
+    </div>
+
+    <table class="mx">
+      <colgroup>
+        <col class="feat">
+        <col class="brand">
+        <col class="other">
+        <col class="other">
+        <col class="other">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Modo</th>
+          <th class="brand"><span class="nm">processingTime</span>Lo que usamos hoy</th>
+          <th><span class="nm">availableNow</span>Incremental programado</th>
+          <th><span class="nm">Real-Time Mode</span>Milisegundos</th>
+          <th><span class="nm">Pipelines declarativos</span>Lakeflow SDP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="feat">Latencia típica</td>
+          <td class="brand"><span class="mark yes"></span>Segundos</td>
+          <td><span class="mark par"></span>La frecuencia del job</td>
+          <td><span class="mark yes"></span>Milisegundos</td>
+          <td><span class="mark par"></span>Segundos a minutos</td>
+        </tr>
+        <tr>
+          <td class="feat">Cómputo</td>
+          <td class="brand"><span class="mark par"></span>Clúster siempre encendido</td>
+          <td><span class="mark yes"></span>Se apaga al terminar</td>
+          <td><span class="mark par"></span>Clúster clásico, DBR 16.4+</td>
+          <td><span class="mark yes"></span>Gestionado por Databricks</td>
+        </tr>
+        <tr>
+          <td class="feat">Disponible en serverless</td>
+          <td class="brand"><span class="mark no"></span>No</td>
+          <td><span class="mark yes"></span>Sí</td>
+          <td><span class="mark no"></span>No</td>
+          <td><span class="mark yes"></span>Sí</td>
+        </tr>
+        <tr>
+          <td class="feat">Fuentes</td>
+          <td class="brand"><span class="mark yes"></span>Archivos, Delta, Kafka, Event Hubs</td>
+          <td><span class="mark yes"></span>Las mismas</td>
+          <td><span class="mark par"></span>Kafka, Event Hubs, Kinesis</td>
+          <td><span class="mark yes"></span>Las mismas + read_files</td>
+        </tr>
+        <tr>
+          <td class="feat">Caso típico en el banco</td>
+          <td class="brand"><span class="mark yes"></span>Alertas y tableros operativos</td>
+          <td><span class="mark yes"></span>Cargas cada hora, reportes</td>
+          <td><span class="mark yes"></span>Fraude en la autorización</td>
+          <td><span class="mark yes"></span>Medallion con calidad declarada</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="mx-foot">
+      <div class="lg"><span class="mark yes"></span>Fortaleza</div>
+      <div class="lg"><span class="mark par"></span>Con matices</div>
+      <div class="lg"><span class="mark no"></span>No disponible</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Concepto</b>Latencia y costo</div>
+    <div class="c">Cambiar la latencia es cambiar una línea: el trigger</div>
+    <div class="r"><span class="num">06</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide p-index" data-pattern="index-numbered" data-label="07 Agenda">
+  <div class="body">
+    <div class="ix-head">
+      <h2>La <em>agenda</em> del laboratorio</h2>
+      <div class="meta">Cinco ejercicios y un reto · ~95 min<br>El 01 y el 02 quedan corriendo</div>
+    </div>
+
+    <div class="ix-rows">
+      <div>
+        <div class="ix-section"><span>Ejercicios</span><span>07</span></div>
+        <div class="ix-row"><div class="ix-num">00</div><div class="ix-title">Preparación<span class="sub">Tu schema, volúmenes y tablas de referencia.</span></div><div class="ix-pg">8 min</div></div>
+        <div class="ix-row"><div class="ix-num">01</div><div class="ix-title">Generador en tiempo real<span class="sub">Transacciones nuevas cada 2 segundos.</span></div><div class="ix-pg">7 min</div></div>
+        <div class="ix-row"><div class="ix-num">02</div><div class="ix-title">Ingesta y transformaciones<span class="sub">Auto Loader, Bronze, Silver, deduplicación y cuarentena.</span></div><div class="ix-pg">15 min</div></div>
+        <div class="ix-row"><div class="ix-num">03</div><div class="ix-title">Ventanas y eventos tardíos<span class="sub">Watermarks, append y update con MERGE.</span></div><div class="ix-pg">22 min</div></div>
+        <div class="ix-row"><div class="ix-num">04</div><div class="ix-title">Enriquecimiento y alertas<span class="sub">Clientes, comercios, tipo de cambio y velocidad.</span></div><div class="ix-pg">20 min</div></div>
+        <div class="ix-row"><div class="ix-num">05</div><div class="ix-title">Operación<span class="sub">Triggers, checkpoints y el camino a producción.</span></div><div class="ix-pg">10 min</div></div>
+        <div class="ix-row"><div class="ix-num">06</div><div class="ix-title">Reto<span class="sub">La alerta de viaje imposible.</span></div><div class="ix-pg">Tarea</div></div>
+      </div>
+
+      <div>
+        <div class="ix-section"><span>Cómo trabajaremos</span><span></span></div>
+        <div class="ix-row"><div class="ix-num">A</div><div class="ix-title">Importar el lab<span class="sub">Workspace, Home, Import: el archivo .dbc del taller.</span></div><div class="ix-pg">.dbc</div></div>
+        <div class="ix-row"><div class="ix-num">B</div><div class="ix-title">Widget catalog<span class="sub">Escríbanlo en cada notebook y vuelvan a ejecutar.</span></div><div class="ix-pg">Widget</div></div>
+        <div class="ix-row"><div class="ix-num">C</div><div class="ix-title">Clúster clásico<span class="sub">DBR 17.3 LTS, conectado a cada notebook.</span></div><div class="ix-pg">Clásico</div></div>
+        <div class="ix-row"><div class="ix-num">D</div><div class="ix-title">Varias pestañas<span class="sub">El 01 y el 02 siguen abiertos mientras trabajan en el 03, 04 y 05.</span></div><div class="ix-pg">Pestañas</div></div>
+
+        <div class="ix-section"><span>Al terminar</span><span></span></div>
+        <div class="ix-row"><div class="ix-num">→</div><div class="ix-title">Apagar las consultas<span class="sub">Notebook 05, paso 5: detener el 02 y el generador.</span></div><div class="ix-pg">Costo</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Introducción</b>Agenda</div>
+    <div class="c">El código viene completo; el reto es el único ejercicio por completar</div>
+    <div class="r"><span class="num">07</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide oat-deep p-pipeline" data-pattern="pipeline-dag" data-label="08 Flujo del laboratorio">
+  <div class="body">
+    <div class="pp-head">
+      <h2>De la transacción a la <em>alerta,</em> en segundos.</h2>
+      <div class="meta">Lo que construirán en el laboratorio<br>Todo dentro de Unity Catalog</div>
+    </div>
+
+    <div class="dag">
+      <div class="stage source">
+        <div class="tag">01 · Generar</div>
+        <div class="nm">Transacciones</div>
+        <div class="role">Rate source convertido en compras con tarjeta, escritas como JSON en un volumen.</div>
+        <div class="tech"><b>Rate source</b><span>· JSON</span></div>
+        <dl class="metrics">
+          <div class="m"><dt>Eventos/s</dt><dd>~20</dd></div>
+          <div class="m"><dt>Cada</dt><dd>2 s</dd></div>
+        </dl>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="stage bronze">
+        <div class="tag">02 · Bronze</div>
+        <div class="nm">Tal como llegó</div>
+        <div class="role">Auto Loader procesa cada archivo nuevo una sola vez, todo como texto.</div>
+        <div class="tech"><b>Auto Loader</b><span>· Delta</span></div>
+        <dl class="metrics">
+          <div class="m"><dt>Trigger</dt><dd>5 s</dd></div>
+          <div class="m"><dt>Esquema</dt><dd>Texto</dd></div>
+        </dl>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="stage silver">
+        <div class="tag">02 · Silver</div>
+        <div class="nm">Limpio y único</div>
+        <div class="role">Tipos, validación, deduplicación con watermark y cuarentena.</div>
+        <div class="tech"><b>foreachBatch</b><span>· txnVersion</span></div>
+        <dl class="metrics">
+          <div class="m"><dt>Watermark</dt><dd>10 min</dd></div>
+          <div class="m"><dt>Duplicados</dt><dd>0</dd></div>
+        </dl>
+      </div>
+
+      <div class="arrow">→</div>
+
+      <div class="stage gold">
+        <div class="tag">03 · 04 · Gold</div>
+        <div class="nm">Ventanas y alertas</div>
+        <div class="role">Ventas por minuto, enriquecimiento con referencia y alertas de monto y velocidad.</div>
+        <div class="tech"><b>window</b><span>· joins</span><span>· MERGE</span></div>
+        <dl class="metrics">
+          <div class="m"><dt>Ventana</dt><dd>1 min</dd></div>
+          <div class="m"><dt>Alertas</dt><dd>3 tipos</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <dl class="pp-foot">
+      <div class="item"><dt>Checkpoint</dt><dd>uno por consulta, en un volumen</dd></div>
+      <div class="item"><dt>Exactamente una vez</dt><dd>offsets + commits + Delta</dd></div>
+      <div class="item"><dt>Referencias</dt><dd>se releen en cada micro-lote</dd></div>
+      <div class="item"><dt>Producción</dt><dd>Lakeflow Jobs <span class="lv">con reintentos</span></dd></div>
+    </dl>
+  </div>
+  <div class="footer">
+    <div class="l"><b>Laboratorio</b>Flujo de punta a punta</div>
+    <div class="c">Con Kafka o Event Hubs solo cambia la fuente; el resto es igual</div>
+    <div class="r"><span class="num">08</span> / 09</div>
+  </div>
+</section>
+
+<section class="slide p-closer" data-pattern="closer-split" data-label="09 Antes de empezar">
+  <div class="body">
+    <div class="cl-left">
+      <div class="eyebrow">Antes de empezar</div>
+      <h2>Abran el lab.<br>Arranquen el <em>generador.</em></h2>
+      <div class="cta-row">
+        <div class="url"><b>Empezamos por</b>00_setup</div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+
+    <div class="cl-right">
+      <div class="lockup"><img src="assets/lockup-primary-white.svg" alt="Databricks"></div>
+      <div class="steps">
+        <div class="item"><div class="n">01</div><div><h3>Importen el archivo</h3><p>Workspace, Home, Import, File: "lafise-eventos-tiempo-real.dbc".</p></div></div>
+        <div class="item"><div class="n">02</div><div><h3>Conecten el clúster clásico</h3><p>DBR 17.3 LTS, en cada notebook del taller.</p></div></div>
+        <div class="item"><div class="n">03</div><div><h3>Escriban el catálogo</h3><p>En el widget catalog de cada notebook, y vuelvan a ejecutar.</p></div></div>
+      </div>
+      <dl class="meta-row">
+        <div class="m"><dt>Schema</dt><dd>eventos_rt_&lt;usuario&gt;</dd></div>
+        <div class="m"><dt>Pestañas abiertas</dt><dd>01 · 02 · el notebook actual</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
