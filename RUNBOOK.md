@@ -94,3 +94,30 @@ regenerado desde cero con `reiniciar = si`):
 6. El sink en **memoria no admite recuperar desde checkpoint** (por eso el `03` lo usa sin checkpoint y solo para
    explorar).
 7. RocksDB ya es el state store por defecto en DBR 17.3 (se ve en el `offsets` del checkpoint, notebook `05`).
+
+## 6. Notebook adicional `07_real_time_mode` (Real-Time Mode), probado el 2026-11-13
+
+Necesita un **clúster propio**: DBR 17.3 LTS, Standard o Dedicated, **sin Photon**, **tamaño fijo de 2 workers de 4
+núcleos**, **on-demand** (sin spot) y `spark.databricks.streaming.realTimeMode.enabled true` en la configuración de
+Spark. Antes debe haberse corrido el `00_setup` (usa las tablas de referencia); no necesita el generador del `01`.
+
+| Paso | Resultado |
+|---|---|
+| Alerta de monto sin estado (rate source → enriquecimiento → `foreach`) | ✅ `e2eLatencyMs` P50 0 ms, P90 1 ms |
+| Alerta de velocidad con estado (ventana de 2 min, modo update) | ✅ 5/5 tarjetas en ráfaga, emitida **en la transacción 10**, 72–91 s **antes** del cierre de la ventana; `e2eLatencyMs` P50 27 ms, P90 46 ms |
+| Parte D (Event Hubs) | No probada: requiere un namespace de Event Hubs; se omite si el widget está vacío |
+
+**Hallazgos (incorporados al notebook):**
+1. Con **1 worker de 4 núcleos** la consulta no arrancó (`CONCURRENT_SCHEDULER_INSUFFICIENT_SLOT`); se documentan 2 workers.
+2. El **join stream-static con `broadcast`** no arrancó en RTM (falta de slots al preparar el broadcast; con clave
+   constante el plan cae en `BroadcastNestedLoopJoin`, que no está en la lista permitida de RTM). Las tablas de
+   referencia pequeñas se pasan como **mapas en memoria** (`F.create_map`), que se arman al iniciar la consulta: un
+   cambio en `tipo_cambio` requiere reiniciarla.
+3. En DBR 17.3 las latencias de RTM vienen en `rtmMetrics` (`{"e2eLatencyMs": {"obj": [["P50", {"num": …}], …]}}`),
+   no en `latencies`.
+4. Reanudar desde un checkpoint viejo hace que el rate source "se ponga al día" con horas antiguas y las latencias
+   salgan en minutos: el notebook borra sus checkpoints de RTM al iniciar.
+5. La latencia medida en el escritor `foreach` (~0.5–1.6 s P50) incluye la escritura al volumen, que
+   `e2eLatencyMs` no cuenta.
+6. A 20 eventos/s una tarjeta en ráfaga no llega a 10 compras dentro de una ventana de 2 minutos en el tiempo de la
+   demo; el `07` usa 50 eventos/s por defecto.

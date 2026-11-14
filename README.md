@@ -10,7 +10,7 @@ llegan: Auto Loader → Bronze → Silver, ventanas con watermark, joins con tab
 
 - `lafise-eventos-tiempo-real/`
   - `00 - Course Overview`
-  - `Laboratorio - Eventos en tiempo real/`: `00_setup` → `06_reto`, `solutions/`, `data/`, `utils/`
+  - `Laboratorio - Eventos en tiempo real/`: `00_setup` → `06_reto`, `07_real_time_mode` (adicional), `solutions/`, `data/`, `utils/`
 - `build/lafise-eventos-tiempo-real.dbc`: archivo DBC para importar todo el árbol en un clic (`python3 build/build_dbc.py`).
 - `validacion/validacion_entorno_lafise_eventos_rt.py`: validación del entorno para los **organizadores**
   (PASA / FALLA / ALTERNATIVA / REVISAR por requisito; borra lo que crea). Enviar antes del taller.
@@ -23,5 +23,8 @@ llegan: Auto Loader → Bronze → Silver, ventanas con watermark, joins con tab
 
 Clúster clásico DBR 17.3 LTS (Standard o Dedicated) · Unity Catalog · en el catálogo: `USE CATALOG` + `CREATE SCHEMA`
 (o un schema propio con `CREATE TABLE` + `CREATE VOLUME`). **Sin librerías externas** (no necesita salida a PyPI).
+
+El notebook adicional `07_real_time_mode` necesita su propio clúster clásico con Real-Time Mode activado
+(`spark.databricks.streaming.realTimeMode.enabled true`, sin Photon, sin autoscaling y sin spot; ver el notebook).
 
 Todos los datos son sintéticos.
